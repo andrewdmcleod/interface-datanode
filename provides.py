@@ -15,6 +15,7 @@ import json
 from charms.reactive import RelationBase
 from charms.reactive import hook
 from charms.reactive import scopes
+from charms.reactive.helpers import data_changed
 from charms.reactive.bus import get_states
 
 from charmhelpers.core import hookenv
@@ -93,6 +94,9 @@ class DataNodeProvides(RelationBase):
 
         conv.toggle_state('{relation_name}.spec.mismatch', available and not spec_matches)
         conv.toggle_state('{relation_name}.ready', available and spec_matches and visible)
+
+        if data_changed('datanode.configuration', self.namenodes()) and len(self.namenodes()) > 1:
+            conv.set_state('datanode.restart.required')
 
         hookenv.log('States: {}'.format(set(get_states().keys())))
 
