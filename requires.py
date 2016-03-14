@@ -25,7 +25,7 @@ class DataNodeRequires(RelationBase):
     @hook('{requires:dfs-slave}-relation-joined')
     def joined(self):
         conv = self.conversation()
-        conv.set_state('{relation_name}.related')
+        conv.set_state('{relation_name}.joined')
         conv.remove_state('{relation_name}.departing')
 
     @hook('{requires:dfs-slave}-relation-changed')
@@ -38,7 +38,7 @@ class DataNodeRequires(RelationBase):
     @hook('{requires:dfs-slave}-relation-departed')
     def departed(self):
         conv = self.conversation()
-        conv.remove_state('{relation_name}.related')
+        conv.remove_state('{relation_name}.joined')
         conv.remove_state('{relation_name}.journalnode.joined')
         conv.set_state('{relation_name}.departing')
 

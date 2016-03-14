@@ -13,7 +13,7 @@ units.
 
 This interface layer will set the following states, as appropriate:
 
-  * `{relation_name}.related` One or more DataNodes have connected.  The
+  * `{relation_name}.joined` One or more DataNodes have connected.  The
     charm should call the following methods to provide the appropriate
     information to the DataNodes:
       * `send_spec(spec)`
@@ -36,7 +36,7 @@ This interface layer will set the following states, as appropriate:
 
 This interface layer will set the following states, as appropriate:
 
-  * `{relation_name}.related` The relation is established, but HDFS may not yet
+  * `{relation_name}.joined` The relation is established, but HDFS may not yet
     have provided any connection or service information.
 
   * `{relation_name}.ready` The NameNode has provided all of the necessary
